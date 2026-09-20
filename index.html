@@ -1,45 +1,32 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="h-full">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thanks For Opening</title>
-
+    <title>Private Page</title>
+    
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif'],
-                    },
-                    colors: {
-                        brand: {
-                            50: '#f0f7ff',
-                            500: '#3b82f6',
-                            900: '#0f172a',
-                        }
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'sans-serif'],
                     },
                     animation: {
-                        'gradient-x': 'gradient-x 15s ease infinite',
+                        'fade-in': 'fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards',
                         'float': 'float 6s ease-in-out infinite',
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'shimmer': 'shimmer 2.5s infinite',
                     },
                     keyframes: {
-                        'gradient-x': {
-                            '0%, 100%': { 'background-size': '200% 200%', 'background-position': 'left center' },
-                            '50%': { 'background-size': '200% 200%', 'background-position': 'right center' },
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(16px) scale(0.98)' },
+                            '100%': { opacity: '1', transform: 'translateY(0) scale(1)' },
                         },
-                        'float': {
+                        float: {
                             '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-12px)' },
-                        },
-                        'shimmer': {
-                            '100%': { transform: 'translateX(100%)' },
+                            '50%': { transform: 'translateY(-6px)' },
                         }
                     }
                 }
@@ -50,590 +37,73 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-
-    <!-- Custom CSS Styles -->
     <style>
-        /* Glassmorphism utilities */
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        /* Glassmorphism card styling */
+        .glass-card {
+            background: rgba(15, 23, 42, 0.45);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.25);
         }
 
-        .dark .glass-panel {
-            background: rgba(15, 23, 42, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+        /* Glassmorphism badge styling */
+        .glass-badge {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.35);
         }
 
-        .glass-button {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .glass-button:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
-        }
-
-        .light-glow {
-            box-shadow: 0 0 50px -10px rgba(99, 102, 241, 0.3);
-        }
-
-        /* Fluid background gradient meshes */
-        .mesh-gradient-dark {
-            background: radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
-                        radial-gradient(at 50% 0%, hsla(225,39%,10%,1) 0, transparent 50%), 
-                        radial-gradient(at 100% 0%, hsla(260,40%,12%,1) 0, transparent 50%),
-                        radial-gradient(at 0% 100%, hsla(230,45%,8%,1) 0, transparent 50%), 
-                        radial-gradient(at 80% 100%, hsla(280,50%,12%,1) 0, transparent 50%);
-            background-color: #090d16;
-        }
-
-        .mesh-gradient-light {
-            background: radial-gradient(at 0% 0%, hsla(210,100%,96%,1) 0, transparent 50%), 
-                        radial-gradient(at 50% 0%, hsla(230,100%,97%,1) 0, transparent 50%), 
-                        radial-gradient(at 100% 0%, hsla(280,100%,96%,1) 0, transparent 50%),
-                        radial-gradient(at 0% 100%, hsla(220,100%,98%,1) 0, transparent 50%), 
-                        radial-gradient(at 80% 100%, hsla(260,100%,97%,1) 0, transparent 50%);
-            background-color: #f8fafc;
-        }
-
-        /* Text gradient effect */
-        .text-gradient {
-            background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, #94a3b8 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .light .text-gradient {
-            background: linear-gradient(135deg, #0f172a 0%, #334155 50%, #475569 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .text-gradient-accent {
-            background: linear-gradient(135deg, #60a5fa 0%, #a855f7 50%, #ec4899 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Custom scrollbar hiding */
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
+        /* Soft typography glowing effect */
+        .text-glow {
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.3), 0 4px 20px rgba(0, 0, 0, 0.8);
         }
     </style>
 </head>
-<body class="dark font-sans antialiased selection:bg-purple-500 selection:text-white min-h-screen flex flex-col justify-between overflow-x-hidden transition-colors duration-700">
+<body class="h-full w-full bg-slate-950 text-white font-sans overflow-hidden select-none">
 
-    <!-- Background Canvas for Interactive Floating Particles -->
-    <canvas id="particleCanvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
-
-    <!-- Dynamic Glowing Orbs Background -->
-    <div id="bgMesh" class="fixed inset-0 mesh-gradient-dark -z-10 transition-all duration-1000"></div>
-
-    <div class="fixed inset-0 overflow-hidden pointer-events-none -z-5">
-        <div class="absolute -top-40 -left-40 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse-slow"></div>
-        <div class="absolute top-1/2 -right-40 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 2s;"></div>
-        <div class="absolute -bottom-40 left-1/3 w-96 h-96 bg-pink-500/15 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 4s;"></div>
-    </div>
-
-    <!-- Header / Navigation Controls -->
-    <header class="relative z-10 w-full max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
-        <!-- Logo / Brand Title -->
-        <div class="flex items-center space-x-3 cursor-pointer group" onclick="triggerRipple(event)">
-            <div class="w-9 h-9 rounded-xl glass-panel flex items-center justify-center text-purple-400 dark:text-purple-300 group-hover:scale-105 transition-transform duration-300">
-                <i data-lucide="sparkles" class="w-5 h-5"></i>
-            </div>
-            <span class="text-sm font-semibold tracking-wider text-slate-700 dark:text-slate-300 uppercase">Aura Light</span>
-        </div>
-
-        <!-- Action Controls -->
-        <div class="flex items-center space-x-3">
-            <!-- Sound Ambient Drone Toggle -->
-            <button id="soundToggle" onclick="toggleAmbientSound()" title="Toggle Ambient Audio" aria-label="Toggle Sound"
-                class="glass-button p-2.5 rounded-full text-slate-700 dark:text-slate-300 hover:text-purple-500 dark:hover:text-purple-400 focus:outline-none">
-                <i id="soundIcon" data-lucide="volume-x" class="w-5 h-5"></i>
-            </button>
-
-            <!-- Light/Dark Mode Switcher -->
-            <button id="themeToggle" onclick="toggleTheme()" title="Switch Visual Theme" aria-label="Toggle Theme"
-                class="glass-button p-2.5 rounded-full text-slate-700 dark:text-slate-300 hover:text-amber-500 dark:hover:text-amber-400 focus:outline-none">
-                <i id="themeIcon" data-lucide="sun" class="w-5 h-5"></i>
-            </button>
-        </div>
-    </header>
-
-    <!-- Main Content Hero Area -->
-    <main class="relative z-10 flex-1 flex flex-col items-center justify-center px-6 py-12 text-center max-w-4xl mx-auto my-auto">
+    <!-- Full-screen background image container -->
+    <div class="fixed inset-0 z-0 overflow-hidden">
+        <img src="1723125173345_3.jpg" 
+             alt="Background Image" 
+             class="w-full h-full object-cover object-center scale-105 transition-transform duration-1000 ease-out" />
         
-        <!-- Ambient Status Badge -->
-        <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full glass-panel mb-8 animate-float shadow-sm">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-            <span class="text-xs font-medium text-slate-600 dark:text-slate-300 tracking-wide">
-                Interactive Session Active
-            </span>
-        </div>
-
-        <!-- Primary Text Heading -->
-        <div class="relative group cursor-default">
-            <h1 id="mainTitle" class="text-5xl sm:text-7xl md:text-8xl font-serif font-normal tracking-tight text-gradient mb-6 transition-all duration-500 leading-tight">
-                Thanks for opening
-            </h1>
-            <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-purple-600/10 to-blue-600/10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
-        </div>
-
-        <!-- Subtitle Description -->
-        <p id="subTitle" class="text-lg sm:text-xl text-slate-600 dark:text-slate-400 font-light max-w-2xl mx-auto mb-10 leading-relaxed opacity-90">
-            You've arrived at a quiet corner of the digital space. Take a slow breath, move your cursor, and enjoy a moment of stillness.
-        </p>
-
-        <!-- Action Buttons Bar -->
-        <div class="flex flex-wrap items-center justify-center gap-4">
-            <!-- Copy Page Link Button -->
-            <button onclick="copyPageLink()" class="glass-button px-6 py-3 rounded-2xl font-medium text-sm text-slate-800 dark:text-slate-200 flex items-center space-x-2">
-                <i data-lucide="share-2" class="w-4 h-4 text-purple-500"></i>
-                <span>Share Experience</span>
-            </button>
-
-            <!-- Personalize Greeting Button -->
-            <button onclick="openPersonalizeModal()" class="glass-button px-6 py-3 rounded-2xl font-medium text-sm text-slate-800 dark:text-slate-200 flex items-center space-x-2">
-                <i data-lucide="edit-3" class="w-4 h-4 text-blue-500"></i>
-                <span>Custom Message</span>
-            </button>
-
-            <!-- Sparkle Explosion Interaction -->
-            <button onclick="triggerParticleBurst(event)" class="glass-button px-6 py-3 rounded-2xl font-medium text-sm text-slate-800 dark:text-slate-200 flex items-center space-x-2">
-                <i data-lucide="wand-2" class="w-4 h-4 text-pink-500"></i>
-                <span>Send Warmth</span>
-            </button>
-        </div>
-
-        <!-- Time & Status Bar -->
-        <div class="mt-16 flex items-center justify-center space-x-6 text-xs text-slate-500 dark:text-slate-400">
-            <div class="flex items-center space-x-1.5">
-                <i data-lucide="clock" class="w-3.5 h-3.5"></i>
-                <span id="currentTime">--:--:--</span>
-            </div>
-            <span>•</span>
-            <div class="flex items-center space-x-1.5">
-                <i data-lucide="heart" class="w-3.5 h-3.5 text-rose-500"></i>
-                <span>Designed with simplicity</span>
-            </div>
-        </div>
-    </main>
-
-    <!-- Minimalist Footer -->
-    <footer class="relative z-10 w-full max-w-7xl mx-auto px-6 py-6 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 dark:text-slate-400 border-t border-slate-200/20 dark:border-slate-800/40 gap-4">
-        <div>
-            &copy; <span id="currentYear"></span> Aura Digital Experience.
-        </div>
-        <div class="flex items-center space-x-6">
-            <button onclick="toggleParticleSpeed()" class="hover:text-purple-400 transition-colors">
-                <span id="speedLabel">Particle Flow: Gentle</span>
-            </button>
-            <button onclick="resetText()" class="hover:text-purple-400 transition-colors">
-                Reset View
-            </button>
-        </div>
-    </footer>
-
-    <!-- Customization Modal -->
-    <div id="personalizeModal" class="fixed inset-0 z-50 flex items-center justify-center px-4 bg-slate-950/60 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300">
-        <div class="glass-panel w-full max-w-md p-6 rounded-3xl shadow-2xl border border-white/20 transform scale-95 transition-transform duration-300" id="modalCard">
-            <div class="flex items-center justify-between mb-4">
-                <h3 class="text-lg font-semibold text-slate-800 dark:text-slate-100 flex items-center gap-2">
-                    <i data-lucide="sliders" class="w-5 h-5 text-purple-400"></i>
-                    Customize Text
-                </h3>
-                <button onclick="closePersonalizeModal()" class="p-1 rounded-lg hover:bg-white/10 text-slate-400 hover:text-slate-200">
-                    <i data-lucide="x" class="w-5 h-5"></i>
-                </button>
-            </div>
-            <div class="space-y-4">
-                <div>
-                    <label class="block text-xs font-medium text-slate-400 mb-1">Heading Text</label>
-                    <input type="text" id="headingInput" value="Thanks for opening" 
-                        class="w-full px-4 py-2.5 rounded-xl bg-slate-900/40 border border-slate-700/50 text-slate-100 focus:outline-none focus:border-purple-500 text-sm">
-                </div>
-                <div>
-                    <label class="block text-xs font-medium text-slate-400 mb-1">Subheading Text</label>
-                    <textarea id="subheadingInput" rows="3" 
-                        class="w-full px-4 py-2.5 rounded-xl bg-slate-900/40 border border-slate-700/50 text-slate-100 focus:outline-none focus:border-purple-500 text-sm resize-none">You've arrived at a quiet corner of the digital space. Take a slow breath, move your cursor, and enjoy a moment of stillness.</textarea>
-                </div>
-                <div class="flex justify-end space-x-3 pt-2">
-                    <button onclick="closePersonalizeModal()" class="px-4 py-2 rounded-xl text-xs font-medium text-slate-400 hover:text-slate-200">
-                        Cancel
-                    </button>
-                    <button onclick="applyCustomText()" class="px-5 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-medium shadow-lg shadow-purple-600/30 transition-all">
-                        Apply Changes
-                    </button>
-                </div>
-            </div>
-        </div>
+        <!-- Subtle dark gradient overlay for visual balance and high text legibility -->
+        <div class="absolute inset-0 bg-gradient-to-b from-slate-950/40 via-slate-950/25 to-slate-950/65"></div>
     </div>
 
-    <!-- Notification Toast Popup -->
-    <div id="toast" class="fixed bottom-8 right-8 z-50 glass-panel px-5 py-3 rounded-2xl flex items-center space-x-3 shadow-2xl translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
-        <div id="toastIcon" class="p-1 rounded-lg bg-purple-500/20 text-purple-400">
-            <i data-lucide="check" class="w-4 h-4"></i>
-        </div>
-        <span id="toastMessage" class="text-xs font-medium text-slate-200">Action performed!</span>
+    <!-- Main page wrapper -->
+    <div class="relative z-10 min-h-screen flex flex-col justify-between items-center px-4 py-8 sm:px-8 sm:py-12">
+        
+        <!-- Top Spacer for balanced vertical placement -->
+        <div class="w-full max-w-xl h-8 opacity-0"></div>
+
+        <!-- Center Content Card -->
+        <main class="w-full max-w-2xl mx-auto my-auto animate-fade-in">
+            <div class="glass-card rounded-3xl p-8 sm:p-14 text-center transform transition-all duration-500 hover:border-white/30">
+                <h1 class="text-3xl sm:text-5xl md:text-6xl font-display font-bold text-white tracking-tight leading-tight text-glow">
+                    This is an private page
+                </h1>
+            </div>
+        </main>
+
+        <!-- Bottom Subtext Badge -->
+        <footer class="w-full flex justify-center pb-2 sm:pb-4 animate-fade-in" style="animation-delay: 200ms;">
+            <div class="glass-badge inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full text-xs sm:text-sm font-medium text-slate-200 tracking-wide transition-all duration-300 hover:scale-105">
+                <span class="relative flex h-2.5 w-2.5">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                </span>
+                <span>Something Special Coming Soon.</span>
+            </div>
+        </footer>
+
     </div>
 
-    <script>
-        // Lucide icons initialization
-        lucide.createIcons();
-
-        // System State
-        let isDarkMode = true;
-        let ambientAudioContext = null;
-        let ambientOscillator = null;
-        let ambientGain = null;
-        let isAudioPlaying = false;
-        let particleSpeedMultiplier = 1;
-
-        // Initialize Year
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-        // Live Clock Updates
-        function updateClock() {
-            const now = new Date();
-            document.getElementById('currentTime').textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
-
-        // Theme Toggle Functionality
-        function toggleTheme() {
-            const body = document.body;
-            const bgMesh = document.getElementById('bgMesh');
-            const themeIcon = document.getElementById('themeIcon');
-
-            isDarkMode = !isDarkMode;
-
-            if (isDarkMode) {
-                body.classList.add('dark');
-                body.classList.remove('light');
-                bgMesh.className = 'fixed inset-0 mesh-gradient-dark -z-10 transition-all duration-1000';
-                themeIcon.setAttribute('data-lucide', 'sun');
-                showToast("Switched to Dark Mode");
-            } else {
-                body.classList.remove('dark');
-                body.classList.add('light');
-                bgMesh.className = 'fixed inset-0 mesh-gradient-light -z-10 transition-all duration-1000';
-                themeIcon.setAttribute('data-lucide', 'moon');
-                showToast("Switched to Light Mode");
-            }
-            lucide.createIcons();
-            initParticles(); // Adapt particle colors
-        }
-
-        // Notification Toast Manager
-        function showToast(message, iconName = 'check') {
-            const toast = document.getElementById('toast');
-            const toastMessage = document.getElementById('toastMessage');
-            const toastIcon = document.getElementById('toastIcon');
-
-            toastMessage.textContent = message;
-            toastIcon.innerHTML = `<i data-lucide="${iconName}" class="w-4 h-4"></i>`;
-            lucide.createIcons();
-
-            toast.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
-            toast.classList.add('translate-y-0', 'opacity-100');
-
-            setTimeout(() => {
-                toast.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
-                toast.classList.remove('translate-y-0', 'opacity-100');
-            }, 3000);
-        }
-
-        // Copy Page URL standard helper with execCommand fallback
-        function copyPageLink() {
-            const dummy = document.createElement('input');
-            document.body.appendChild(dummy);
-            dummy.value = window.location.href;
-            dummy.select();
-            
-            try {
-                document.execCommand('copy');
-                showToast("Experience link copied to clipboard!", "share-2");
-            } catch (err) {
-                showToast("Failed to copy link", "alert-circle");
-            }
-            document.body.removeChild(dummy);
-        }
-
-        // Custom Personalization Modal Handlers
-        function openPersonalizeModal() {
-            const modal = document.getElementById('personalizeModal');
-            const modalCard = document.getElementById('modalCard');
-            modal.classList.remove('opacity-0', 'pointer-events-none');
-            modalCard.classList.remove('scale-95');
-            modalCard.classList.add('scale-100');
-        }
-
-        function closePersonalizeModal() {
-            const modal = document.getElementById('personalizeModal');
-            const modalCard = document.getElementById('modalCard');
-            modalCard.classList.remove('scale-100');
-            modalCard.classList.add('scale-95');
-            modal.classList.add('opacity-0', 'pointer-events-none');
-        }
-
-        function applyCustomText() {
-            const heading = document.getElementById('headingInput').value.trim();
-            const subheading = document.getElementById('subheadingInput').value.trim();
-
-            if (heading) {
-                document.getElementById('mainTitle').textContent = heading;
-            }
-            if (subheading) {
-                document.getElementById('subTitle').textContent = subheading;
-            }
-
-            closePersonalizeModal();
-            showToast("Custom text updated!", "sparkles");
-        }
-
-        function resetText() {
-            document.getElementById('mainTitle').textContent = "Thanks for opening";
-            document.getElementById('subTitle').textContent = "You've arrived at a quiet corner of the digital space. Take a slow breath, move your cursor, and enjoy a moment of stillness.";
-            document.getElementById('headingInput').value = "Thanks for opening";
-            document.getElementById('subheadingInput').value = "You've arrived at a quiet corner of the digital space. Take a slow breath, move your cursor, and enjoy a moment of stillness.";
-            showToast("Reset to original view", "rotate-ccw");
-        }
-
-        // Web Audio Synth for Soothing Background Ambient Pad
-        function toggleAmbientSound() {
-            const soundIcon = document.getElementById('soundIcon');
-
-            if (!isAudioPlaying) {
-                try {
-                    const AudioContext = window.AudioContext || window.webkitAudioContext;
-                    ambientAudioContext = new AudioContext();
-
-                    // Master gain
-                    ambientGain = ambientAudioContext.createGain();
-                    ambientGain.gain.setValueAtTime(0.01, ambientAudioContext.currentTime);
-                    ambientGain.gain.exponentialRampToValueAtTime(0.12, ambientAudioContext.currentTime + 3);
-
-                    // Dual Sine Oscillator Chords (432Hz harmonic scale chord)
-                    const freqs = [216, 324, 432];
-                    freqs.forEach(freq => {
-                        const osc = ambientAudioContext.createOscillator();
-                        osc.type = 'sine';
-                        osc.frequency.setValueAtTime(freq, ambientAudioContext.currentTime);
-
-                        // Subtle LFO modulation
-                        const lfo = ambientAudioContext.createOscillator();
-                        lfo.frequency.value = 0.2;
-                        const lfoGain = ambientAudioContext.createGain();
-                        lfoGain.gain.value = 2;
-
-                        lfo.connect(lfoGain);
-                        lfoGain.connect(osc.frequency);
-                        lfo.start();
-
-                        osc.connect(ambientGain);
-                        osc.start();
-                    });
-
-                    ambientGain.connect(ambientAudioContext.destination);
-                    isAudioPlaying = true;
-                    soundIcon.setAttribute('data-lucide', 'volume-2');
-                    showToast("Ambient sound pad active", "volume-2");
-                } catch (e) {
-                    console.error("Audio API error", e);
-                    showToast("Audio context unavailable", "volume-x");
-                }
-            } else {
-                if (ambientGain && ambientAudioContext) {
-                    ambientGain.gain.exponentialRampToValueAtTime(0.0001, ambientAudioContext.currentTime + 1);
-                    setTimeout(() => {
-                        if (ambientAudioContext) ambientAudioContext.close();
-                        isAudioPlaying = false;
-                    }, 1000);
-                }
-                soundIcon.setAttribute('data-lucide', 'volume-x');
-                showToast("Ambient sound muted", "volume-x");
-            }
-            lucide.createIcons();
-        }
-
-        // Interactive Canvas Particle System
-        const canvas = document.getElementById('particleCanvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-        let mouse = { x: null, y: null, radius: 150 };
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        window.addEventListener('mousemove', (e) => {
-            mouse.x = e.x;
-            mouse.y = e.y;
-        });
-
-        window.addEventListener('mouseleave', () => {
-            mouse.x = null;
-            mouse.y = null;
-        });
-
-        class Particle {
-            constructor() {
-                this.reset();
-            }
-
-            reset() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2.5 + 0.5;
-                this.baseX = this.x;
-                this.baseY = this.y;
-                this.vx = (Math.random() - 0.5) * 0.4;
-                this.vy = (Math.random() - 0.5) * 0.4;
-                this.alpha = Math.random() * 0.5 + 0.2;
-            }
-
-            update() {
-                this.x += this.vx * particleSpeedMultiplier;
-                this.y += this.vy * particleSpeedMultiplier;
-
-                // Screen Wrap
-                if (this.x < 0) this.x = canvas.width;
-                if (this.x > canvas.width) this.x = 0;
-                if (this.y < 0) this.y = canvas.height;
-                if (this.y > canvas.height) this.y = 0;
-
-                // Mouse Interaction (Push gently away)
-                if (mouse.x !== null && mouse.y !== null) {
-                    let dx = mouse.x - this.x;
-                    let dy = mouse.y - this.y;
-                    let distance = Math.sqrt(dx * dx + dy * dy);
-                    if (distance < mouse.radius) {
-                        let force = (mouse.radius - distance) / mouse.radius;
-                        let directionX = dx / distance;
-                        let directionY = dy / distance;
-                        this.x -= directionX * force * 3;
-                        this.y -= directionY * force * 3;
-                    }
-                }
-            }
-
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                const color = isDarkMode 
-                    ? `rgba(168, 85, 247, ${this.alpha})` 
-                    : `rgba(99, 102, 241, ${this.alpha * 0.8})`;
-                ctx.fillStyle = color;
-                ctx.fill();
-            }
-        }
-
-        function initParticles() {
-            particles = [];
-            const count = Math.min(Math.floor((canvas.width * canvas.height) / 12000), 90);
-            for (let i = 0; i < count; i++) {
-                particles.push(new Particle());
-            }
-        }
-
-        function connectParticles() {
-            for (let a = 0; a < particles.length; a++) {
-                for (let b = a; b < particles.length; b++) {
-                    let dx = particles[a].x - particles[b].x;
-                    let dy = particles[a].y - particles[b].y;
-                    let distance = Math.sqrt(dx * dx + dy * dy);
-
-                    if (distance < 120) {
-                        let opacity = (1 - distance / 120) * 0.18;
-                        ctx.strokeStyle = isDarkMode 
-                            ? `rgba(147, 51, 234, ${opacity})` 
-                            : `rgba(99, 102, 241, ${opacity})`;
-                        ctx.lineWidth = 0.8;
-                        ctx.beginPath();
-                        ctx.moveTo(particles[a].x, particles[a].y);
-                        ctx.lineTo(particles[b].x, particles[b].y);
-                        ctx.stroke();
-                    }
-                }
-            }
-        }
-
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                p.update();
-                p.draw();
-            });
-            connectParticles();
-            requestAnimationFrame(animateParticles);
-        }
-
-        // Particle speed controller
-        function toggleParticleSpeed() {
-            const speedLabel = document.getElementById('speedLabel');
-            if (particleSpeedMultiplier === 1) {
-                particleSpeedMultiplier = 2.5;
-                speedLabel.textContent = 'Particle Flow: Energetic';
-                showToast("Flow accelerated");
-            } else if (particleSpeedMultiplier === 2.5) {
-                particleSpeedMultiplier = 0.3;
-                speedLabel.textContent = 'Particle Flow: Deep Calm';
-                showToast("Flow slowed down");
-            } else {
-                particleSpeedMultiplier = 1;
-                speedLabel.textContent = 'Particle Flow: Gentle';
-                showToast("Flow set to normal");
-            }
-        }
-
-        // Burst explosion of particles on click interaction
-        function triggerParticleBurst(e) {
-            const x = e.clientX || window.innerWidth / 2;
-            const y = e.clientY || window.innerHeight / 2;
-
-            for (let i = 0; i < 20; i++) {
-                let p = new Particle();
-                p.x = x;
-                p.y = y;
-                p.vx = (Math.random() - 0.5) * 6;
-                p.vy = (Math.random() - 0.5) * 6;
-                p.size = Math.random() * 4 + 1.5;
-                p.alpha = 0.9;
-                particles.push(p);
-            }
-            showToast("Warmth sent into the space!", "sparkles");
-        }
-
-        function triggerRipple(e) {
-            triggerParticleBurst(e);
-        }
-
-        // Start animation after DOM load
-        window.onload = function() {
-            initParticles();
-            animateParticles();
-        };
-    </script>
 </body>
 </html>
